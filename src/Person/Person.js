@@ -1,8 +1,8 @@
 import React from 'react';
 
-const person = () => {
-  // We can execute one line expressions, short simple expressions, like calculations or function calls here.
-  return <p>I'm a Person and I'm { Math.floor(Math.random() * 30) } years old! </p>
+// This is a reusable Component
+const person = (props) => {
+  return <p>I'm { props.name } and I am { props.age } years old! </p>
 };
 
 export default person;
