@@ -46,12 +46,31 @@ class App extends Component {
   // When using ArrowFunction implicitly returns the body like so () => return this.switchNameHandler()
   // We are also passing an anonymise function when using this.switchNameHandler() - So it does not get executed immediatlay even when using switchNameHandler is invoked
   // This syntax - () => this.switchNameHandler('Raiden!!') can be inefficient.
+
+
   render() {
+    // RESTRICION: This is hard coding style when using inline styles.
+    // inline style: In React we often use css styles in JavaScript
+    // our style constant is a variable
+    // Use inline style when you want to scope a style to a specific element
+    const style = {
+      backgroundColor: 'white',
+      font: 'inherit',
+      border: '1px solid blue',
+      padding: '8px',
+      cursor: 'pointer'
+    };
+
     return (
       <div className="App">
         <h1>Hi I'm a React App</h1>
         <p>This is really working!</p>
-        <button onClick={ () => this.switchNameHandler('Raiden!!') }>Switch Name</button>
+        <button
+          style={ style }
+          onClick={ () => this.switchNameHandler('Raiden!!') }
+          >
+          Switch Name
+        </button>
         <Person
           name={ this.state.persons[0].name }
           age={ this.state.persons[0].age }
