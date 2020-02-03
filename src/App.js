@@ -27,6 +27,16 @@ class App extends Component {
     })
   };
 
+  nameChangedHandler = (event) => {
+    this.setState({
+      persons: [
+        { name: 'Max', age: 26 },
+        { name: event.target.value, age: 29 },
+        { name: 'Stephanie', age: 20 }
+      ]
+    })
+  };
+
   // We can pass a value to switchNameHandler like newName value
   // How do we pass that new data
   // This are two ways of doing this
@@ -36,7 +46,6 @@ class App extends Component {
   // When using ArrowFunction implicitly returns the body like so () => return this.switchNameHandler()
   // We are also passing an anonymise function when using this.switchNameHandler() - So it does not get executed immediatlay even when using switchNameHandler is invoked
   // This syntax - () => this.switchNameHandler('Raiden!!') can be inefficient.
-
   render() {
     return (
       <div className="App">
@@ -51,6 +60,7 @@ class App extends Component {
           name={ this.state.persons[1].name }
           age={ this.state.persons[1].age }
           click={ this.switchNameHandler.bind(this, 'Max') }
+          changed={ this.nameChangedHandler }
           >
           My Hobbies: Racing
         </Person>
