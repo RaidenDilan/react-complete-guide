@@ -44,14 +44,6 @@ class App extends Component {
     persons[personIndex] = person;
 
     this.setState({ persons: persons });
-
-    // this.setState({
-    //   persons: [
-    //     { name: 'Max', age: 26 },
-    //     { name: event.target.value, age: 29 },
-    //     { name: 'Stephanie', age: 20 }
-    //   ]
-    // })
   };
 
   togglePersonsHandler = () => {
@@ -68,7 +60,8 @@ class App extends Component {
 
   render() {
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
+      color: 'white',
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
@@ -91,6 +84,8 @@ class App extends Component {
           }) }
         </div>
       );
+      // else equivalent
+      style.backgroundColor = 'red';
     }
 
     return (
@@ -110,20 +105,3 @@ class App extends Component {
 }
 
 export default App;
-
-// <Person
-//   name={ this.state.persons[0].name }
-//   age={ this.state.persons[0].age }
-//   />
-// <Person
-//   name={ this.state.persons[1].name }
-//   age={ this.state.persons[1].age }
-//   click={ this.switchNameHandler.bind(this, 'Max') }
-//   changed={ this.nameChangedHandler }
-//   >
-//   My Hobbies: Racing
-// </Person>
-// <Person
-//   name={ this.state.persons[2].name }
-//   age={ this.state.persons[2].age }
-//   />
