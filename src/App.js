@@ -3,8 +3,6 @@ import './App.css';
 import Person from './Person/Person';
 
 class App extends Component {
-  // 'this. keyword' referes to the class
-  // use state with care.
   state = {
     persons: [
       { name: 'Max', age: 26 },
@@ -14,9 +12,7 @@ class App extends Component {
     otherState: 'some other value'
   }
 
-  // METHODS
   switchNameHandler = (newName) => {
-    // console.log('Was clicked!');
     // DON'T DO THIS: this.state.persons[0].name = 'Raiden';
     this.setState({
       persons: [
@@ -43,22 +39,7 @@ class App extends Component {
     this.setState({ showPersons: !doesShow });
   };
 
-  // We can pass a value to switchNameHandler like newName value
-  // How do we pass that new data
-  // This are two ways of doing this
-  // With .bind(this, 'list of arguements')
-  // OR
-  // With new syntax which is ArrowFunction
-  // When using ArrowFunction implicitly returns the body like so () => return this.switchNameHandler()
-  // We are also passing an anonymise function when using this.switchNameHandler() - So it does not get executed immediatlay even when using switchNameHandler is invoked
-  // This syntax - () => this.switchNameHandler('Raiden!!') can be inefficient.
-
-
   render() {
-    // RESTRICION: This is hard coding style when using inline styles.
-    // inline style: In React we often use css styles in JavaScript
-    // our style constant is a variable
-    // Use inline style when you want to scope a style to a specific element
     const style = {
       backgroundColor: 'white',
       font: 'inherit',
@@ -66,6 +47,31 @@ class App extends Component {
       padding: '8px',
       cursor: 'pointer'
     };
+
+    let persons = null;
+
+    if (this.state.showPersons) {
+      persons = (
+        <div>
+          <Person
+            name={ this.state.persons[0].name }
+            age={ this.state.persons[0].age }
+            />
+          <Person
+            name={ this.state.persons[1].name }
+            age={ this.state.persons[1].age }
+            click={ this.switchNameHandler.bind(this, 'Max') }
+            changed={ this.nameChangedHandler }
+            >
+            My Hobbies: Racing
+          </Person>
+          <Person
+            name={ this.state.persons[2].name }
+            age={ this.state.persons[2].age }
+            />
+        </div>
+      );
+    }
 
     return (
       <div className="App">
@@ -75,31 +81,11 @@ class App extends Component {
           style={ style }
           onClick={ this.togglePersonsHandler }
           >
-          Switch Name
+          Toggle Persons
         </button>
-        { this.state.showPersons === true ?
-          <div>
-            <Person
-              name={ this.state.persons[0].name }
-              age={ this.state.persons[0].age }
-              />
-            <Person
-              name={ this.state.persons[1].name }
-              age={ this.state.persons[1].age }
-              click={ this.switchNameHandler.bind(this, 'Max') }
-              changed={ this.nameChangedHandler }
-              >
-              My Hobbies: Racing
-            </Person>
-            <Person
-              name={ this.state.persons[2].name }
-              age={ this.state.persons[2].age }
-              />
-          </div> : null
-        }
+        { persons }
       </div>
     );
-    // return React.createElement('div', { className: 'App' }, React.createElement('h1', null, 'Does this work now?'));
   }
 }
 
