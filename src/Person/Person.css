@@ -1,6 +1,6 @@
 /* Whatever style we write here will be globally available, it not for our Person Component only */
 
-/* .Person {
+.Person {
   width: 60%;
   margin: 16px auto;
   border: 1px solid #eee;
@@ -13,13 +13,4 @@
   .Person {
     width: 450px;
   }
-} */
-
-/* Global button style */
-/* .button {
-  background-color: white;
-  font: inherit;
-  border: 1px solid blue;
-  padding: 8px;
-  cursor: pointer;
-} */
+}
