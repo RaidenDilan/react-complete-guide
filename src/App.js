@@ -1,21 +1,7 @@
 import React, { Component } from 'react';
-import './App.css';
-import styled from 'styled-components'
+import classes from './App.css';
+// import styled from 'styled-components'
 import Person from './Person/Person';
-
-const StyledButton = styled.button`
-  background-color: ${ props => props.alt ? 'red' : 'green' };
-  color: white;
-  font: inherit;
-  border: 1px solid blue;
-  padding: 8px;
-  cursor: pointer;
-
-  &:hover {
-    background-color: ${ props => props.alt ? 'salmon' : 'lightgreen' };
-    color: black;
-  }
-`;
 
 class App extends Component {
   state = {
@@ -35,6 +21,7 @@ class App extends Component {
         { name: 'Manu', age: 29 },
         { name: 'Stephanie', age: 20 }
       ],
+      otherValue: 'Some other value',
       showPersons: false
     })
   };
@@ -75,6 +62,7 @@ class App extends Component {
 
   render() {
     let persons = null;
+    const btnClass = [classes.Button];
 
     if (this.state.showPersons) {
       persons = (
@@ -90,22 +78,24 @@ class App extends Component {
           }) }
         </div>
       );
+
+      btnClass.push(classes.Red);
     }
 
-    const classes = [];
-    if (this.state.persons.length <= 2) classes.push('red') // equivalent to const classes = ['red'];
-    if (this.state.persons.length <= 1) classes.push('bold') // equivalent to const classes = ['red', 'bold'];
+    const assignedClasses = [];
+    if (this.state.persons.length <= 2) assignedClasses.push(classes.red) // equivalent to const assignedClasses = ['red'];
+    if (this.state.persons.length <= 1) assignedClasses.push(classes.bold) // equivalent to const assignedClasses = ['red', 'bold'];
 
     return (
-      <div className="App">
+      <div className={ classes.App }>
         <h1>Hi I'm a React App</h1>
-          <p className={ classes.join(' ') }>This is really working!</p>
-          <StyledButton
-            alt={ this.state.showPersons }
+          <p className={ assignedClasses.join(' ') }>This is really working!</p>
+          <button
+            className={ btnClass.join(' ') }
             onClick={ this.togglePersonsHandler }
             >
             Toggle Persons
-            </StyledButton>
+            </button>
         { persons }
       </div>
     );
