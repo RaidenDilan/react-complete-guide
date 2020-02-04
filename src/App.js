@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Radium from 'radium';
 import Person from './Person/Person';
 
 class App extends Component {
@@ -65,7 +66,11 @@ class App extends Component {
       font: 'inherit',
       border: '1px solid blue',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     };
 
     let persons = null;
@@ -85,19 +90,20 @@ class App extends Component {
         </div>
       );
       // else equivalent
-      style.backgroundColor = 'red';
+      style.backgroundColor = 'red', // gets overwritten
+      style[':hover'] = {
+        backgroundColor: 'salmon',
+        color: 'black'
+      }
     }
 
-    // class names
+    // First Approach
     // let classes = ['red', 'bold'].join(' ');
 
+    // Second Approach
     const classes = [];
-    if (this.state.persons.length <= 2) {
-      classes.push('red') // equivalent to const classes = ['red'];
-    }
-    if (this.state.persons.length <= 1) {
-      classes.push('bold') // equivalent to const classes = ['red', 'bold'];
-    }
+    if (this.state.persons.length <= 2) classes.push('red') // equivalent to const classes = ['red'];
+    if (this.state.persons.length <= 1) classes.push('bold') // equivalent to const classes = ['red', 'bold'];
 
     return (
       <div className="App">
@@ -115,4 +121,7 @@ class App extends Component {
   }
 }
 
-export default App;
+// Radium(App) - Higher Ordered Component
+// A Component rapping another Component to add extra functionality
+// in Radium case; Pseudo elements
+export default Radium(App);
