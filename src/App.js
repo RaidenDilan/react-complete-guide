@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-// import Radium from 'radium';
-// import Radium, { StyleRoot } from 'radium';
 import styled from 'styled-components'
-
 import Person from './Person/Person';
 
 const StyledButton = styled.button`
@@ -77,19 +74,6 @@ class App extends Component {
   }
 
   render() {
-    // const style = {
-    //   backgroundColor: 'green',
-    //   color: 'white',
-    //   font: 'inherit',
-    //   border: '1px solid blue',
-    //   padding: '8px',
-    //   cursor: 'pointer',
-    //   ':hover': {
-    //     backgroundColor: 'lightgreen',
-    //     color: 'black'
-    //   }
-    // };
-
     let persons = null;
 
     if (this.state.showPersons) {
@@ -106,18 +90,8 @@ class App extends Component {
           }) }
         </div>
       );
-      // else equivalent
-      // style.backgroundColor = 'red', // gets overwritten
-      // style[':hover'] = {
-      //   backgroundColor: 'salmon',
-      //   color: 'black'
-      // }
     }
 
-    // First Approach
-    // let classes = ['red', 'bold'].join(' ');
-
-    // Second Approach
     const classes = [];
     if (this.state.persons.length <= 2) classes.push('red') // equivalent to const classes = ['red'];
     if (this.state.persons.length <= 1) classes.push('bold') // equivalent to const classes = ['red', 'bold'];
@@ -138,8 +112,4 @@ class App extends Component {
   }
 }
 
-// Radium(App) - Higher Ordered Component
-// A Component rapping another Component to add extra functionality
-// in Radium case; Pseudo elements
 export default App;
-// export default Radium(App);
