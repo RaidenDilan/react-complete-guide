@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import './App.css';
 // import Radium from 'radium';
-import Radium, { StyleRoot } from 'radium';
+// import Radium, { StyleRoot } from 'radium';
 import Person from './Person/Person';
+
 
 class App extends Component {
   state = {
@@ -91,7 +92,7 @@ class App extends Component {
         </div>
       );
       // else equivalent
-      style.backgroundColor = 'red', // gets overwritten
+      // style.backgroundColor = 'red', // gets overwritten
       style[':hover'] = {
         backgroundColor: 'salmon',
         color: 'black'
@@ -107,8 +108,7 @@ class App extends Component {
     if (this.state.persons.length <= 1) classes.push('bold') // equivalent to const classes = ['red', 'bold'];
 
     return (
-      <StyleRoot>
-        <div className="App">
+      <div className="App">
         <h1>Hi I'm a React App</h1>
         <p className={ classes.join(' ') }>This is really working!</p>
         <button
@@ -118,8 +118,7 @@ class App extends Component {
         Toggle Persons
         </button>
         { persons }
-        </div>
-      </StyleRoot>
+      </div>
     );
   }
 }
@@ -127,4 +126,5 @@ class App extends Component {
 // Radium(App) - Higher Ordered Component
 // A Component rapping another Component to add extra functionality
 // in Radium case; Pseudo elements
-export default Radium(App);
+export default App;
+// export default Radium(App);
