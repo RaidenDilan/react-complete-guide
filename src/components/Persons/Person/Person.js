@@ -12,10 +12,6 @@ import classes from './Person.css';
 
 // This is a reusable Component
 const person = (props) => {
-  const rdn = Math.random();
-
-  if (rdn > 0.7) throw new Error('Something went wrong');
-
   return (
     <div className={ classes.Person }>
       <p onClick={ props.click }>I'm { props.name } and I am { props.age } years old! </p>
