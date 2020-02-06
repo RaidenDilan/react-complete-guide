@@ -6,6 +6,20 @@ import Cockpit from '../components/Cockpit/Cockpit'
 // import ErrorBoundary from './ErrorBoundary/ErrorBoundary'; // Higher ordered Component which simply wraps a Component with the goal of handling any errors that Component might throw
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    console.log('[App.js] constrcutor');
+
+    /* THIS: Can also be here */
+    // this.state = {
+    //   persons: [
+    //     { id: 'adsfd', name: 'Max', age: 26 },
+    //     { id: 'fdfds', name: 'Manu', age: 29 },
+    //     { id: 'ghdgd', name: 'Stephanie', age: 24 }
+    //   ],
+    //   otherState: 'some other value'
+    // }
+  }
   state = {
     persons: [
       { id: 'adsfd', name: 'Max', age: 26 },
@@ -13,6 +27,20 @@ class App extends Component {
       { id: 'ghdgd', name: 'Stephanie', age: 24 }
     ],
     otherState: 'some other value'
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('[App.js] getDerivedStateFromProps', props);
+    return state;
+  }
+
+  /* DEPRICATED */
+  // componentWillMount() {
+  //   console.log('[App.js] componentWillMount');
+  // }
+
+  componentDidMount() {
+    console.log('[App.js] componentDidMount');
   }
 
   switchNameHandler = (newName) => {
@@ -64,6 +92,7 @@ class App extends Component {
 
   render() {
     let persons = null;
+    console.log('[App.js] render');
 
     if (this.state.showPersons) {
       persons = <Persons

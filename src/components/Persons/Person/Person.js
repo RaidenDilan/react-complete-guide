@@ -12,6 +12,8 @@ import classes from './Person.css';
 
 // This is a reusable Component
 const person = (props) => {
+  console.log('[Person.js] rendering...');
+
   return (
     <div className={ classes.Person }>
       <p onClick={ props.click }>I'm { props.name } and I am { props.age } years old! </p>
