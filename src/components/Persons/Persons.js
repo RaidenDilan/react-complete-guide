@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Person from './Person/Person';
 
-class Persons extends Component {
+class Persons extends PureComponent {
   // static getDerivedStateFromProps(props, state) {
   //   console.log('[Persons.js] getDerivedStateFromProps', props);
   //   return state;
@@ -14,12 +14,17 @@ class Persons extends Component {
 
   /* THIS IS NOT RECOMMEND AS REACT RUNS THIS REACT LIFECYCLE BY DEFAULT */
   /* THIS IS ALSO NOT SUPER PERFORMANCE HEADVY CHECK */
-  shouldComponentUpdateUpdate(nextProps, prevProps) {
-    console.log('[Persons.js] shouldComponentUpdateUpdate');
-    if (nextProps.persons !== this.props.persons) return true;
-    else return false;
-    // return true;
-  }
+  /* THIS IS NOT NEED because PureComponent already runs shouldComponentUpdate() */
+  // shouldComponentUpdate(nextProps, prevProps) {
+  //   console.log('[Persons.js] shouldComponentUpdate');
+  //   if (
+  //     nextProps.persons !== this.props.persons ||
+  //     nextProps.changed !== this.props.changed ||
+  //     nextProps.clicked !== this.props.clicked
+  //   ) return true;
+  //   else return false;
+  //   // return true;
+  // }
 
   getSnapshotBeforeUpdate(prevProps, nextProps) {
     console.log('[Persons.js] getSnapshotBeforeUpdate');
