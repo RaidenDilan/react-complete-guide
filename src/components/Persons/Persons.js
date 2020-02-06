@@ -12,6 +12,8 @@ class Persons extends Component {
   //   console.log('[Persons.js] componentWillRecieveProps', props);
   // }
 
+  /* THIS IS NOT RECOMMEND AS REACT RUNS THIS REACT LIFECYCLE BY DEFAULT */
+  /* THIS IS ALSO NOT SUPER PERFORMANCE HEADVY CHECK */
   shouldComponentUpdateUpdate(nextProps, prevProps) {
     console.log('[Persons.js] shouldComponentUpdateUpdate');
     if (nextProps.persons !== this.props.persons) return true;
