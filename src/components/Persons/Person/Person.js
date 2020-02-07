@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import classes from './Person.css';
 
+import Aux from '../../../hoc/Aux';
+
 /* For React version 2.x or higher rename Person.css to Person.module.css
  * Then you don't need to run npm run eject to use CSS Modules
  * Then Import like this ---> import classes from './Person.module.css';
@@ -16,15 +18,15 @@ class Person extends Component {
     console.log('[Person.js] rendering...');
 
     return (
-      <div className={ classes.Person }>
-      <p onClick={ this.props.click }>I'm { this.props.name } and I am { this.props.age } years old! </p>
-      <p>{ this.props.children }</p>
-      <input
-      type="text"
-      onChange={ this.props.changed }
-      value={ this.props.name }
-      />
-      </div>
+      <Aux>
+        <p onClick={ this.props.click }>I'm { this.props.name } and I am { this.props.age } years old! </p>
+        <p>{ this.props.children }</p>
+        <input
+          type="text"
+          onChange={ this.props.changed }
+          value={ this.props.name }
+          />
+      </Aux>
     )
   }
 };
