@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 // import React, { Component, Fragment } from 'react';
 import classes from './Person.css';
 import Aux from '../../../hoc/Aux';
+import withClass from '../../../hoc/withClass';
 
 /* For React version 2.x or higher rename Person.css to Person.module.css
  * Then you don't need to run npm run eject to use CSS Modules
@@ -33,4 +34,4 @@ class Person extends Component {
   }
 };
 
-export default Person;
+export default withClass(Person, classes.Person);
