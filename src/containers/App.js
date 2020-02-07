@@ -3,7 +3,11 @@ import React, { Component } from 'react';
 import classes from './App.css';
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit'
-import WithClass from '../hoc/WithClass';
+
+// We are imporining WithClass with lowercase here because it's not a Component anymore.
+// It's a now a normal function, a function that returns a Component function
+import withClass from '../hoc/withClass';
+import Aux from '../hoc/Aux';
 // import ErrorBoundary from './ErrorBoundary/ErrorBoundary'; // Higher ordered Component which simply wraps a Component with the goal of handling any errors that Component might throw
 
 class App extends Component {
@@ -114,7 +118,7 @@ class App extends Component {
     }
 
     return (
-      <WithClass classes={ classes.App }>
+      <Aux>
         <button onClick={ () => {
           this.setState({ showCockpit: false })
         }}
@@ -128,9 +132,12 @@ class App extends Component {
           clicked={ this.togglePersonsHandler }
           /> : null }
         { persons }
-      </WithClass>
+      </Aux>
     );
   }
 }
 
-export default App;
+// We call withClass()
+// The first arguement you return will be Component you wrap.
+// The second argument you return will be the class name.
+export default withClass(App, classes.App);
