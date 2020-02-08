@@ -31,6 +31,7 @@ class Person extends Component {
     // You can also import Fragment from react. and replace Aux with Fragment.
     return (
       <Aux>
+        { this.props.isAuth ? <p>Authenticated</p> : <p>Please log in</p> }
         <p onClick={ this.props.click }>I'm { this.props.name } and I am { this.props.age } years old! </p>
         <p>{ this.props.children }</p>
         <input
