@@ -18,7 +18,7 @@ import PropTypes from 'prop-types';
 class Person extends Component {
   constructor(props) {
     super(props);
-    this.inputElementRef = React.createRef();
+    this.inputElementRef = React.createRef(); // React references to focus() on the last React element
   }
   componentDidMount() {
     // this.inputElement.focus();
@@ -35,7 +35,7 @@ class Person extends Component {
         <p>{ this.props.children }</p>
         <input
           // ref={ (inputEl) => { this.inputElement = inputEl } } // 1st APPROACH to using React references
-          ref={ this.inputElementRef } // 2n APPROACH to using React references with the constructor()
+          ref={ this.inputElementRef } // 2n APPROACH to using React references with the constructor() // Also function based approach.
           type="text"
           onChange={ this.props.changed }
           value={ this.props.name }
