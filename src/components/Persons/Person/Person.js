@@ -16,6 +16,14 @@ import PropTypes from 'prop-types';
 
 // This is a reusable Component
 class Person extends Component {
+  constructor(props) {
+    super(props);
+    this.inputElementRef = React.createRef();
+  }
+  componentDidMount() {
+    // this.inputElement.focus();
+    this.inputElementRef.current.focus();
+  }
   render() {
     console.log('[Person.js] rendering...');
 
@@ -26,6 +34,8 @@ class Person extends Component {
         <p onClick={ this.props.click }>I'm { this.props.name } and I am { this.props.age } years old! </p>
         <p>{ this.props.children }</p>
         <input
+          // ref={ (inputEl) => { this.inputElement = inputEl } } // 1st APPROACH to using React references
+          ref={ this.inputElementRef } // 2n APPROACH to using React references with the constructor()
           type="text"
           onChange={ this.props.changed }
           value={ this.props.name }
