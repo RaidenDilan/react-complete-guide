@@ -27,7 +27,7 @@ class App extends Component {
   }
   state = {
     persons: [
-      { id: 'adsfd', name: 'Max', age: 26 },
+      { id: 'adsfd', name: 'Max', age: 26 }, // if we pass age as String PropTypes will do it's magic
       { id: 'fdfds', name: 'Manu', age: 29 },
       { id: 'ghdgd', name: 'Stephanie', age: 24 }
     ],

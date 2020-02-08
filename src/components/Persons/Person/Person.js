@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import classes from './Person.css';
 import Aux from '../../../hoc/Aux';
 import withClass from '../../../hoc/withClass';
+import PropTypes from 'prop-types';
 
 /* For React version 2.x or higher rename Person.css to Person.module.css
  * Then you don't need to run npm run eject to use CSS Modules
@@ -32,6 +33,17 @@ class Person extends Component {
       </Aux>
     )
   }
+};
+
+
+/* Use propTypes if you are building a Component Libary to share with other developers. */
+/* Using propTypes is a special property which you add to any JavaScrit Object or any JavaScrit Component Object, */
+/* that React will watch out for in development mode, and give you a warning when passing in incorrect props. */
+Person.propTypes = {
+  click: PropTypes.func,
+  name: PropTypes.string,
+  age: PropTypes.number,
+  changed: PropTypes.func
 };
 
 export default withClass(Person, classes.Person);
