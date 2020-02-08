@@ -33,7 +33,8 @@ class App extends Component {
     ],
     otherState: 'some other value',
     showPersons: false,
-    showCockpit: true
+    showCockpit: true,
+    changedCounter: 0
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -90,7 +91,14 @@ class App extends Component {
 
     persons[personIndex] = person;
 
-    this.setState({ persons: persons });
+    // We call setState synchronously but it's not guaranteed to execute and finish immediatly.
+    // setState does not only take a JavaScrit Object, it also works when you pass in a function.
+    this.setState((prevState, props) => { // we are returning an anonymous function here
+      return {
+        persons: persons,
+        changedCounter: prevState.changedCounter + 1 // Here React will guarantee you that this will be the prevState. for changedCounter to updated correctly.
+        }
+    });
   };
 
   togglePersonsHandler = () => {
