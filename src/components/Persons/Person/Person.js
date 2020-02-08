@@ -4,6 +4,7 @@ import classes from './Person.css';
 import Aux from '../../../hoc/Aux';
 import withClass from '../../../hoc/withClass';
 import PropTypes from 'prop-types';
+import AuthContext from '../../../context/auth-context';
 
 /* For React version 2.x or higher rename Person.css to Person.module.css
  * Then you don't need to run npm run eject to use CSS Modules
@@ -31,7 +32,9 @@ class Person extends Component {
     // You can also import Fragment from react. and replace Aux with Fragment.
     return (
       <Aux>
-        { this.props.isAuth ? <p>Authenticated</p> : <p>Please log in</p> }
+        <AuthContext.Consumer>
+          { (context) => context.authenticated ? <p>Authenticated</p> : <p>Please log in</p> }
+        </AuthContext.Consumer>
         <p onClick={ this.props.click }>I'm { this.props.name } and I am { this.props.age } years old! </p>
         <p>{ this.props.children }</p>
         <input

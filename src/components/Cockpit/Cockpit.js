@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import classes from './Cockpit.css';
 
+import AuthContext from '../../context/auth-context';
+
 const cockpit = (props) => {
   const toggleBtnRef = useRef(null); // useRef hook used in a functional Components
   // toggleBtnRef.current.click(); // can't call thus toggleBtnRef here because the button is undefined
@@ -47,8 +49,10 @@ const cockpit = (props) => {
         onClick={ props.clicked }
         >
         Toggle Persons
-        </button>
-      <button onClick={ props.login }>Login in</button>
+      </button>
+      <AuthContext.Consumer>
+        { context => <button onClick={ context.login }>Login in</button> }
+      </AuthContext.Consumer>
     </div>
   );
 };
