@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import classes from './Cockpit.css';
 
 import AuthContext from '../../context/auth-context';
@@ -6,6 +6,9 @@ import AuthContext from '../../context/auth-context';
 const cockpit = (props) => {
   const toggleBtnRef = useRef(null); // useRef hook used in a functional Components
   // toggleBtnRef.current.click(); // can't call thus toggleBtnRef here because the button is undefined
+  const authContext = useContext(AuthContext);
+
+  console.log('[Cockpit.js] - authContext.authenticated', authContext.authenticated);
 
   useEffect(() => {
     console.log('[Cockpit.js] useEffect');
@@ -50,9 +53,7 @@ const cockpit = (props) => {
         >
         Toggle Persons
       </button>
-      <AuthContext.Consumer>
-        { context => <button onClick={ context.login }>Login in</button> }
-      </AuthContext.Consumer>
+      { <button onClick={ authContext.login }>Login in</button> }
     </div>
   );
 };

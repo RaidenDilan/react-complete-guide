@@ -21,10 +21,17 @@ class Person extends Component {
     super(props);
     this.inputElementRef = React.createRef(); // React references to focus() on the last React element
   }
+
+  // A static property can be accessed from outside from the need to instantiate an object based on this Person class first
+  // And React will access contextType for you.
+  static contextType = AuthContext; // our value is the AuthContext Object;
+
   componentDidMount() {
     // this.inputElement.focus();
     this.inputElementRef.current.focus();
+    console.log('[Person.js] componentDidMount - this.context.authenticated', this.context.authenticated);
   }
+
   render() {
     console.log('[Person.js] rendering...');
 
@@ -32,9 +39,7 @@ class Person extends Component {
     // You can also import Fragment from react. and replace Aux with Fragment.
     return (
       <Aux>
-        <AuthContext.Consumer>
-          { (context) => context.authenticated ? <p>Authenticated</p> : <p>Please log in</p> }
-        </AuthContext.Consumer>
+        { this.context.authenticated ? <p>Authenticated</p> : <p>Please log in</p> }
         <p onClick={ this.props.click }>I'm { this.props.name } and I am { this.props.age } years old! </p>
         <p>{ this.props.children }</p>
         <input
